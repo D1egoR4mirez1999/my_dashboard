@@ -13,5 +13,6 @@ export class SideMenuComponent {
     .map((route) => route.children ?? [])
     .flat()
     .filter((route) => route && route.path)
-    .filter((route) => !route.path?.includes(':'));
+    .filter((route) => !route.path?.includes(':'))
+    .filter((route) => !route.path?.includes('**'));
 }
