@@ -1,1 +1,66 @@
-<p>control-flow works!</p>
+<!-- @if block -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-wite rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">
+      if: {{showContent()}}
+    </h2>
+
+    <button class="p-2 bg-blue-500 rounded text-white" (click)="toggleContent()">
+      Click me
+    </button>
+
+    @if (showContent()) {
+      <p class="mt-5">
+        Content is visible
+      </p>
+    } @else {
+      <p class="mt-5">
+        Content is hidden
+      </p>
+    }
+  </div>
+
+  <!-- @switch block -->
+  <div class="bg-wite rounded shadow p-10">
+    @switch (grade()) {
+      @case ('A') {
+        <h2 class="text-2xl font-bold mb-5">
+          Your grade is A
+        </h2>
+      }
+      @case ('B') {
+        <h2 class="text-2xl font-bold mb-5">
+          Your grade is B
+        </h2>
+      }
+      @case ('F') {
+        <h2 class="text-2xl font-bold mb-5">
+          Your grade is F
+        </h2>
+      }
+    }
+  </div>
+
+  <!-- @for block -->
+  <div class="bg-wite rounded shadow p-10">
+    <ul>
+      @for (
+        framework of frameworks(); 
+        track $index; 
+        let index = $index, even = $even, odd = $odd, first = $first, last = $last
+        ) {
+          <li [class]="{
+            'bg-red-100': even && !first && !last,
+            'bg-purple-100': odd && !first && !last,
+            'bg-blue-100': first || last,
+          }">
+            Item #{{ index }}: {{ framework }}
+          </li>
+      } @empty {
+        <li>
+          No frameworks found
+        </li>
+      }
+    </ul>
+  </div>
+</section>
