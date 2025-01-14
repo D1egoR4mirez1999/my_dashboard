@@ -17,7 +17,7 @@
     </a>
   </div>
   <div id="nav" class="w-full px-6">
-    @for (route of routes; track route.path) {
+    @for (route of routes; track $index) {
       <a 
         [routerLink]="route.path"
         routerLinkActive="bg-blue-800"
